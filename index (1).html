@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--
+  <!DOCTYPE html> le dice al navegador: "esta página usa HTML5".
+  Siempre va en la primera línea del archivo.
+-->
+<html lang="es">
+<!--
+  El atributo lang="es" le dice al navegador y a Google que el contenido
+  está en español. Esto ayuda a la accesibilidad (lectores de pantalla
+  pronuncian correctamente) y al SEO (Google sabe a qué idioma mostrar
+  esta página en búsquedas).
+-->
+
+<head>
+  <!--
+    El <head> NO se ve en la página. Aquí va información "para las máquinas":
+    el navegador, los buscadores (Google) y las redes sociales.
+  -->
+
+  <meta charset="UTF-8">
+  <!-- Define la codificación de caracteres. Sin esto, tildes y la ñ podrían verse mal. -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    Esta línea es CLAVE para el diseño responsive (regla #14 de tu proyecto).
+    Le dice al navegador: "usa el ancho real del dispositivo, no simules
+    que es una pantalla de computador". Sin esto, tu página se vería
+    diminuta y mal escalada en celulares.
+  -->
+
+  <title>[NOMBRE DEL PARADOR] | Parador Gastronómico en Boyacá, Colombia</title>
+  <!--
+    El <title> aparece en la pestaña del navegador Y es lo primero que
+    Google muestra en los resultados de búsqueda. Por eso incluimos
+    palabras clave relevantes (Boyacá, parador gastronómico) para SEO.
+  -->
+
+  <meta name="description" content="[NOMBRE DEL PARADOR]: amasijos boyacenses, café de origen, masato y productos campesinos en un parador familiar en Boyacá, Colombia.">
+  <!--
+    La meta descripción es el texto que Google muestra debajo del título
+    en los resultados de búsqueda. No se ve en la página, pero es clave
+    para que la gente decida hacer clic en tu enlace.
+  -->
+
+  <!--
+    Importamos las tipografías desde Google Fonts.
+    preconnect le dice al navegador "vas a necesitar conectarte a este
+    servidor pronto", lo que acelera la carga (optimización de rendimiento).
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Conectamos nuestro archivo de estilos propio -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============================================
+       HEADER: cabecera fija con logo y navegación
+       ============================================ -->
+  <header>
+    <div class="header-contenido">
+      <p class="logo">[NOMBRE DEL PARADOR]</p>
+
+      <!--
+        Agrupamos el nav, el carrito y el botón hamburguesa en un solo
+        contenedor. Así, el header-contenido solo tiene 2 hijos directos
+        (el logo y este grupo), y "justify-content: space-between"
+        sigue funcionando como queremos: logo a la izquierda, TODO lo
+        demás junto a la derecha.
+      -->
+      <div class="header-acciones">
+        <!--
+          <nav> le dice al navegador "esto es un bloque de navegación".
+          Usamos una lista <ul> porque semánticamente un menú ES una
+          lista de enlaces, aunque visualmente luego no se vea como
+          lista con viñetas (eso lo controlamos con CSS).
+        -->
+        <nav>
+          <ul class="menu-navegacion">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#experiencia">El lugar</a></li>
+            <li><a href="#como-llegar">Cómo llegar</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <!--
+          Botón del carrito. El <span class="carrito-contador"> empieza
+          vacío/oculto — JavaScript le pondrá el número de productos y
+          lo mostrará solo cuando haya al menos 1 producto agregado.
+        -->
+        <button class="boton-carrito" aria-label="Ver carrito de compras">
+          🛒
+          <span class="carrito-contador" aria-hidden="true">0</span>
+        </button>
+
+        <!--
+          Botón de menú hamburguesa: solo visible en pantallas pequeñas
+          (lo controlamos desde CSS con una media query). Usamos <button>
+          y no <div>, porque semánticamente ESTO ES UN BOTÓN interactivo
+          — los botones son accesibles por teclado (Tab + Enter) de
+          forma nativa, algo que un <div> no ofrece sin trabajo extra.
+        -->
+        <button class="boton-hamburguesa" aria-label="Abrir menú de navegación" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <!--
+        aria-label describe el botón para lectores de pantalla, ya que
+        no tiene texto visible, solo las 3 líneas visuales. Cada <span>
+        vacío representa una de las 3 líneas del ícono, que dibujaremos
+        con CSS (no con una imagen).
+      -->
+    </div>
+  </header>
+
+  <!-- ============================================
+       MAIN: contenido principal de la página.
+       Solo debe existir UN <main> por página.
+       ============================================ -->
+  <main>
+
+    <!-- ============ SECCIÓN 1: HERO ============ -->
+    <section id="inicio" class="hero">
+      <div class="hero-contenido">
+        <p class="hero-eyebrow">Tradición boyacense</p>
+        <h1>Un alto en el camino que sabe a campo y a familia</h1>
+        <p class="hero-descripcion">
+          Amasijos recién hechos, café de origen y productos campesinos
+          en [MUNICIPIO], Boyacá.
+        </p>
+        <div class="hero-botones">
+          <a href="#menu" class="boton boton-primario">Ver el menú</a>
+          <a href="#como-llegar" class="boton boton-secundario">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 2: NOSOTROS ============ -->
+    <section id="nosotros" class="nosotros">
+      <h2>Nuestra historia</h2>
+      <p>
+        [Aquí irá la historia real del parador: cómo nació, quiénes lo
+        fundaron y qué representa para la familia y la región. Placeholder
+        de texto mientras se define el contenido definitivo.]
+      </p>
+    </section>
+
+    <!-- ============ SECCIÓN 3: MENÚ Y PRODUCTOS ============ -->
+    <section id="menu" class="menu">
+      <h2>Menú y productos</h2>
+
+      <!-- Sub-bloque: para disfrutar en el lugar -->
+      <div class="menu-grupo">
+        <h3>Para disfrutar en el lugar</h3>
+        <div class="tarjetas-productos">
+
+          <!--
+            Usamos <article> para cada producto porque cada uno es un
+            bloque de contenido independiente y "autocontenido": tendría
+            sentido incluso si lo sacáramos de aquí y lo pusiéramos en
+            otra página (por ejemplo, en un futuro catálogo).
+          -->
+          <article class="tarjeta-producto">
+            <img src="[IMAGEN-AMASIJOS]" alt="Amasijos boyacenses recién horneados">
+            <h4>Amasijos boyacenses</h4>
+            <p>[Descripción breve del producto].</p>
+            <p class="precio-producto">Precio próximamente</p>
+            <!--
+              data-nombre y data-precio son "data attributes": atributos
+              personalizados que no afectan el HTML visualmente, pero
+              que JavaScript puede leer fácilmente con dataset.nombre y
+              dataset.precio. Es la forma estándar de "adjuntar" datos
+              a un elemento del HTML para que JS los use después.
+              data-precio="0" es un PLACEHOLDER explícito: aún no hay
+              precios reales definidos para el negocio.
+            -->
+            <button class="boton-agregar-carrito" data-nombre="Amasijos boyacenses" data-precio="0">
+              Agregar al carrito
+            </button>
+          </article>
+
+          <article class="tarjeta-producto">
+            <img src="[IMAGEN-CAFE]" alt="Café de origen servido en el parador">
+            <h4>Café de origen</h4>
+            <p>[Descripción breve del producto].</p>
+            <p class="precio-producto">Precio próximamente</p>
+            <button class="boton-agregar-carrito" data-nombre="Café de origen" data-precio="0">
+              Agregar al carrito
+            </button>
+          </article>
+
+          <article class="tarjeta-producto">
+            <img src="[IMAGEN-MASATO]" alt="Masato tradicional boyacense">
+            <h4>Masato</h4>
+            <p>[Descripción breve del producto].</p>
+            <p class="precio-producto">Precio próximamente</p>
+            <button class="boton-agregar-carrito" data-nombre="Masato" data-precio="0">
+              Agregar al carrito
+            </button>
+          </article>
+        </div>
+      </div>
+
+      <!-- Sub-bloque: para llevar -->
+      <div class="menu-grupo">
+        <h3>Para llevar a casa</h3>
+        <div class="tarjetas-productos">
+          <article class="tarjeta-producto">
+            <img src="[IMAGEN-HUEVOS]" alt="Huevos campesinos frescos">
+            <h4>Huevos campesinos</h4>
+            <p>[Descripción breve del producto].</p>
+            <p class="precio-producto">Precio próximamente</p>
+            <button class="boton-agregar-carrito" data-nombre="Huevos campesinos" data-precio="0">
+              Agregar al carrito
+            </button>
+          </article>
+
+          <article class="tarjeta-producto">
+            <img src="[IMAGEN-KUMIS]" alt="Kumis casero artesanal">
+            <h4>Kumis casero</h4>
+            <p>[Descripción breve del producto].</p>
+            <p class="precio-producto">Precio próximamente</p>
+            <button class="boton-agregar-carrito" data-nombre="Kumis casero" data-precio="0">
+              Agregar al carrito
+            </button>
+          </article>
+
+          <article class="tarjeta-producto">
+            <img src="[IMAGEN-YOGURT]" alt="Yogurt campesino artesanal">
+            <h4>Yogurt campesino</h4>
+            <p>[Descripción breve del producto].</p>
+            <p class="precio-producto">Precio próximamente</p>
+            <button class="boton-agregar-carrito" data-nombre="Yogurt campesino" data-precio="0">
+              Agregar al carrito
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 4: EXPERIENCIA / EL LUGAR ============ -->
+    <section id="experiencia" class="experiencia">
+      <h2>El lugar</h2>
+      <p>[Descripción del espacio: zonas al aire libre, ambiente familiar, etc.]</p>
+    </section>
+
+    <!-- ============ SECCIÓN 5: CÓMO LLEGAR ============ -->
+    <section id="como-llegar" class="como-llegar">
+      <h2>Cómo llegar</h2>
+      <p>[DIRECCIÓN]</p>
+      <!-- Más adelante insertaremos aquí un mapa embebido de Google Maps -->
+    </section>
+
+    <!-- ============ SECCIÓN 6: CONTACTO ============ -->
+    <section id="contacto" class="contacto">
+      <h2>Contáctanos</h2>
+      <a href="[LINK WHATSAPP]" class="boton boton-primario">Escríbenos por WhatsApp</a>
+
+      <p class="contacto-separador">o déjanos un mensaje</p>
+
+      <!--
+        novalidate le dice al navegador "no hagas tu validación nativa
+        automática al enviar". La desactivamos a propósito porque
+        vamos a implementar NUESTRA propia validación en JavaScript,
+        con mensajes personalizados. Si dejáramos la validación nativa
+        activa además de la nuestra, podrían chocar o duplicarse.
+      -->
+      <form class="formulario-contacto" novalidate>
+
+        <div class="campo-formulario">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required minlength="2">
+          <!--
+            Guardamos el "required" y "minlength" en el HTML de todas
+            formas, como documentación de la regla — aunque la
+            validación real la controla JavaScript, no el navegador.
+          -->
+          <span class="mensaje-error" data-error-de="nombre"></span>
+          <!--
+            Este <span> empieza vacío. JavaScript le va a insertar
+            el texto del error aquí SOLO si el campo es inválido.
+            data-error-de es un "data attribute": un atributo
+            personalizado que usamos para conectar este mensaje de
+            error con su campo correspondiente desde JS.
+          -->
+        </div>
+
+        <div class="campo-formulario">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required>
+          <span class="mensaje-error" data-error-de="correo"></span>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required minlength="10"></textarea>
+          <span class="mensaje-error" data-error-de="mensaje"></span>
+        </div>
+
+        <button type="submit" class="boton boton-primario">Enviar mensaje</button>
+
+        <p class="formulario-confirmacion" aria-live="polite"></p>
+        <!--
+          aria-live="polite" le dice a los lectores de pantalla que
+          anuncien el contenido de este párrafo automáticamente cuando
+          cambie (por ejemplo, cuando aparezca "¡Mensaje enviado!"),
+          sin que el usuario tenga que navegar hasta ahí manualmente.
+        -->
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER: pie de página
+       ============================================ -->
+  <footer>
+    <p>&copy; 2026 [NOMBRE DEL PARADOR]. Todos los derechos reservados.</p>
+    <p>[TELÉFONO] · [DIRECCIÓN]</p>
+  </footer>
+
+  <!--
+    ============================================
+    PANEL DEL CARRITO DE COMPRAS
+    Vive fuera del <header> y del <main> a propósito:
+    es un elemento "flotante" que se superpone a TODA
+    la página, no pertenece a ninguna sección en
+    particular. Empieza oculto (lo controla la clase
+    .carrito-panel sin .abierto, ver CSS).
+    ============================================
+  -->
+  <div class="carrito-overlay"></div>
+  <!--
+    El overlay es el fondo oscuro semi-transparente que cubre el resto
+    de la página cuando el carrito está abierto. Sirve para 2 cosas:
+    (1) enfocar la atención visualmente en el carrito, y (2) dar un
+    área grande donde hacer clic para cerrar el carrito fácilmente.
+  -->
+
+  <aside class="carrito-panel" aria-label="Carrito de compras">
+    <div class="carrito-encabezado">
+      <h3>Tu carrito</h3>
+      <button class="carrito-cerrar" aria-label="Cerrar carrito">✕</button>
+    </div>
+
+    <!--
+      Este contenedor empieza vacío. JavaScript va a insertar aquí,
+      dinámicamente, un bloque por cada producto que el usuario agregue.
+    -->
+    <div class="carrito-lista"></div>
+
+    <p class="carrito-vacio">Tu carrito está vacío.</p>
+    <!-- Este mensaje lo mostramos/ocultamos con JS según si hay
+         productos o no -->
+
+    <div class="carrito-resumen">
+      <p class="carrito-nota">
+        Los precios se confirmarán directamente contigo — [NOMBRE DEL PARADOR]
+        aún no tiene precios publicados en línea.
+      </p>
+      <div class="carrito-total">
+        <span>Total estimado</span>
+        <span class="carrito-total-valor">$0</span>
+      </div>
+      <a href="[LINK WHATSAPP]" class="boton boton-primario carrito-checkout">
+        Confirmar pedido por WhatsApp
+      </a>
+    </div>
+  </aside>
+
+  <!-- Conectamos nuestro archivo de JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
